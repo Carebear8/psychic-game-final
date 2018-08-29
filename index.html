@@ -4,24 +4,43 @@
 
 <head>
   <meta charset="UTF-8">
+  <title>The Psychic Game</title>
   <link rel="stylesheet" href="asset/css/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="asset/css/style.css">
-  <title>Psychic </title>
+
 </head>
 
 <body>
 
-  <div>
-      <p id="directions-text">Press r, p or s to start playing!</p>
-      <p id="userchoice-text"></p>
-      <p id="computerchoice-text"></p>
-      <p id="wins-text"></p>
-      <p id="losses-text"></p>
-      <p id="ties-text"></p>
+
+</div>
+
+    <div class="container">
+    	<div class= "row">
+        <div class= "col-md-12 top">
+          <h1>What letter am I thinking?</h1>
+        
+          <h2>Guess a letter from a - z!</h2>
+        </div>
+      </div>
+        <br>
+      <div class="row lead box">
+        </div>
+        <div class="col-md-8">
+          <p>Wins: <span id="wins">0</span></p>
+        <br>
+          <p>Losses: <span id="losses">0</span></p>
+        <br>
+          <p>Guesses Left: <span id="guesses-left"></span></p>
+        <br>
+            
+          <p>Your Guesses so far: <span id="guesses-so-far"></span></p>
+        </div>
+    	</div>
     </div>
 
-<script src="asset/javascript/game.js"> </script>
-
+    <script type="text/javascript" src="asset/javascript/game.js"></script>
 </body>
 
 </html>

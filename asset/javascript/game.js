@@ -1,40 +1,62 @@
+var computerChoice = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-var computerChoices = ["r", "p", "s"];
+	var win = 0;
+	var loss = 0;
+	var guessesLeft = 9;
+	var guessesSoFar = [];
 
-// Creating variables to hold the number of wins, losses, and ties. They start at 0.
-var wins = 0;
-var losses = 0;
-var ties = 0;
+	//reset everything to default and start a new game!
+	function reset (){
+		guessesLeft = 9;
+		guessesSoFar = [];
+		computerGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
+		console.log(computerGuess);
 
-// Create variables that hold references to the places in the HTML where we want to display things.
-var directionsText = document.getElementById("directions-text");
-var userChoiceText = document.getElementById("userchoice-text");
-var computerChoiceText = document.getElementById("computerchoice-text");
-var winsText = document.getElementById("wins-text");
-var lossesText = document.getElementById("losses-text");
-var tiesText = document.getElementById("ties-text");
+	}
+	reset();
 
-// This function is run whenever the user presses a key.
+  //when user press a key it records the 'letter' and save the 'letter' to the userGuess. 
+   
 document.onkeyup = function(event) {
+var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	
+	//if a letter is not typed yet, then log it in the guessSoFar array
 
-  // Determines which key was pressed.
-  var userGuess = event.key;
+	if (guessesSoFar.indexOf(userGuess) === -1){
+    guessesSoFar.push(userGuess);
+		}
 
-  // Randomly chooses a choice from the options array. This is the Computer's guess.
-  var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+	else {
+		alert ("already tried, please choose another one");		
+	}
 
-  // Only run the following code block if the user presses "r" or "p" or "s".
-  if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
+	
+		//if userGuess is the same with computerGuess, then record win (#)
+		if (userGuess === computerGuess) {
+			win++;
+      alert ("You guessed right, nice job!");
+      reset();
+		}
 
-    // Hide the directions
-    directionsText.textContent = "";
+		//if userGuess is not the same with computerGuess, then record loss (#)
+		else {
+      guessesLeft--;
+      console.log(guessesLeft);
 
-    // Display the user and computer guesses, and wins/losses/ties.
-    userChoiceText.textContent = "You chose: " + userGuess;
-    computerChoiceText.textContent = "The computer chose: " + computerGuess;
-    winsText.textContent = "wins: " + wins;
-    lossesText.textContent = "losses: " + losses;
-    tiesText.textContent = "ties: " + ties;
-  }
+    }
+
+		//if guestLeft is 0 then the game reset to the default and start a new game
+		if (guessesLeft === 0) {
+			loss++
+			alert ("You lost")
+      
+      reset();
+    }
+
+    console.log("win", win, "losses", loss, "guessesLeft", guessesLeft)
+    document.getElementById("wins").textContent = win;
+    document.getElementById("losses").textContent = loss 
+    document.getElementById("guesses-so-far").textContent = guessesSoFar
+    document.getElementById('guesses-left').textContent = guessesLeft
+    
 }
